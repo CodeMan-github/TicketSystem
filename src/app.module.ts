@@ -8,9 +8,6 @@ import { GraphQLModule } from '@nestjs/graphql';
 import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
 import { TicketsModule } from './tickets/tickets.module';
 import { PlanesModule } from './planes/planes.module';
-import { User } from './users/entities/user.entity';
-import { Ticket } from './tickets/entities/ticket.entity';
-import { Plane } from './planes/entities/plane.entity';
 
 @Module({
   imports: [
@@ -18,11 +15,7 @@ import { Plane } from './planes/entities/plane.entity';
       type: 'sqlite',
       database: 'db.sqlite',
       synchronize: true,
-      entities: [
-        User,
-        Ticket,
-        Plane,
-      ]
+      autoLoadEntities: true,
     }),
     UsersModule,
     TicketsModule,
