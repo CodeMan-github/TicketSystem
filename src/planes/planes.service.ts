@@ -13,6 +13,11 @@ export class PlanesService {
     private planeRepository: Repository<Plane>,
   ) {}
 
+  /**
+  * Function that creates the Plane(Create Action)
+  * @param    {CreatePlaneInput} createPlaneInput    The plane object which will be created
+  * @return   {Plane}                                Returns the created plane object
+  */
   async create(createPlaneInput: CreatePlaneInput) {
     // If the plane with the same timeframe exists, reject the creation.
     const plane = this.planeRepository.create(createPlaneInput);
@@ -32,14 +37,28 @@ export class PlanesService {
     return -1;
   }
 
+  /**
+  * Function that retrieves all Planes(Read Action)
+  * @return   {Plane[]}    Returns all plane objects
+  */
   findAll() {
     return this.planeRepository.find();
   }
 
+  /**
+  * Function that retrieves a Plane(Read Action)
+  * @param    {number} id     The plane id to retrieve
+  * @return   {Plane}         Returns the plane object with id
+  */
   findOne(id: number) {
     return this.planeRepository.findOneOrFail(id);
   }
 
+  /**
+  * Function that updates the Plane(Update Action)
+  * @param    {UpdatePlaneInput} updatePlaneInput    The plane object which will be updated
+  * @return   {Plane}                                Returns the updated plane object
+  */
   async update(updatePlaneInput: UpdatePlaneInput) {
     // If the plane with the same timeframe and different id exists, reject the update.
     const exists = await this.planeRepository.find({
@@ -59,6 +78,11 @@ export class PlanesService {
     return -1;
   }
 
+  /**
+  * Function that removes the Plane(Remove Action)
+  * @param    {number} id     The plane id which will be removed
+  * @return   {Plane}         Returns the removed plane object
+  */
   async remove(id: number) {
     const plane = await this.planeRepository.findOneOrFail(id);
     return this.planeRepository.remove(plane);

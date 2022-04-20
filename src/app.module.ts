@@ -11,6 +11,7 @@ import { PlanesModule } from './planes/planes.module';
 
 @Module({
   imports: [
+    // Initialize the module for TypeOrm library
     TypeOrmModule.forRoot({
       type: 'sqlite',
       database: 'db.sqlite',
@@ -20,6 +21,7 @@ import { PlanesModule } from './planes/planes.module';
     UsersModule,
     TicketsModule,
     PlanesModule,
+    // Initialize the module for GraphQL
     GraphQLModule.forRoot<ApolloDriverConfig>({
       driver: ApolloDriver,
       autoSchemaFile: true,
