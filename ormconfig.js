@@ -1,5 +1,6 @@
 const dbConfig = {
   synchronize: true,
+  autoLoadEntities: true,
   migrations: ['migrations/*.js'],
   cli: {
     migrationsDir: 'migrations',

@@ -1,5 +1,6 @@
 import { Injectable, Inject } from '@nestjs/common';
 import { Repository } from 'typeorm';
+import { InjectRepository } from '@nestjs/typeorm';
 
 import { CreateTicketInput } from './dto/create-ticket.input';
 import { UpdateTicketInput } from './dto/update-ticket.input';
@@ -8,7 +9,7 @@ import { Ticket } from './entities/ticket.entity';
 @Injectable()
 export class TicketsService {
   constructor(
-    @Inject('TICKET_REPOSITORY')
+    @InjectRepository(Ticket)
     private ticketRepository: Repository<Ticket>,
   ) {}
 

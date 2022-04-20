@@ -1,17 +1,23 @@
 import { ObjectType, Field, Int } from '@nestjs/graphql';
-import { PrimaryGeneratedColumn, CreateDateColumn, UpdateDateColumn, ManyToOne } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, CreateDateColumn, UpdateDateColumn, ManyToOne } from 'typeorm';
 
-import { User } from 'src/users/entities/user.entity';
-
+import { User } from '../../users/entities/user.entity';
+import { Plane } from '../../planes/entities/plane.entity';
 
 @ObjectType()
+@Entity()
 export class Ticket {
   @Field(() => Int)
   @PrimaryGeneratedColumn()
   id: number;
 
-  @ManyToOne(() => User, (user) => user.tickets)
+  @Field(type => User)
+  @ManyToOne(type => User, user => user.tickets)
   user: User;
+
+  @Field(type => Plane)
+  @ManyToOne(type => Plane, plane => plane.tickets)
+  plane: Plane;
 
   @Field()
   @CreateDateColumn()

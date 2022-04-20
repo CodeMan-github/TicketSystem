@@ -4,14 +4,20 @@ import { MaxLength } from 'class-validator';
 import { Ticket } from '../../tickets/entities/ticket.entity';
 
 @InputType()
-export class CreateUserInput {
+export class CreatePlaneInput {
   @Field()
   @MaxLength(30)
-  firstName: string;
+  departureAirport: string;
 
   @Field()
   @MaxLength(30)
-  lastName: string;
+  arrivalAirport: string;
+
+  @Field()
+  departureTime: Date;
+
+  @Field()
+  arrivalTime: Date;
 
   @Field(type => [Int], { nullable: true })
   tickets: Ticket[];
